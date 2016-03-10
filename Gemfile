@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
+gem 'devise'
 gem 'rails',                  '4.2.5'
 gem 'puma',                   '2.15.3'
 gem 'secure_headers',         '2.4.4'

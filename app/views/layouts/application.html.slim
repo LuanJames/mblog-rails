@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Redação Social
+    meta name="keywords" content="Redação, Redacao, Rede Social, Escrever, ENEM, Corrigir Redação"
+    meta name="description" content="Escreva e corrija suas redações."
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    == yield :head
+  body
+    p.notice = notice
+    p.alert = alert
+
+    div.my-container.p-t-15
+      #left.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
+        == yield :left
+
+      #center.col-md-6.col-lg-6.col-sm-4.col-xs-12.col-xlg-8
+        == yield
+
+      #right.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
+        == yield :right
+
+    == yield :javascript
