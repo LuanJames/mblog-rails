@@ -7,6 +7,13 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rspec'
+
+if ENV['COVERAGE'] == 'true'
+  require 'simplecov'
+
+  SimpleCov.start 'rails'
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
