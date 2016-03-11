@@ -12,4 +12,12 @@ class User < ActiveRecord::Base
   def followers
     User.joins('INNER JOIN relationships ON relationships.to_id = ' + id.to_s).distinct.to_a
   end
+
+  def unread_notifications
+    Notification.where(user_id: id, read:false).to_a
+  end
+
+  def read_notifications=(ids)
+    Notification.where('user_id = ? and id in (?)', id, ids).update_all(read: true)
+  end
 end
