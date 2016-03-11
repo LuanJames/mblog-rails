@@ -7,7 +7,16 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:username) } 
     it { is_expected.to validate_presence_of(:password) }  
-    it { is_expected.to validate_uniqueness_of(:username) }
+    it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+
+    it '#strip_whitespace' do
+      u1 = FactoryGirl.build :user
+      u2 = FactoryGirl.build :user
+      u2.username = u1.username+' '
+      u1.save
+      u2.save
+      expect(u2.errors.count).to eq(1)
+    end
   end
 
   context 'relationships' do
@@ -57,25 +66,4 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'notifications' do
-    describe '#read_notifications' do
-
-      before do
-        @user = FactoryGirl.create :user
-        @users = FactoryGirl.create_list :user, 2
-        @users.each { |u| u.following << @user }
-
-        @posts = FactoryGirl.create_list :post, 5, user: @user
-
-      end
-
-      it 'read two or more' do
-        ids = @posts.map {|p| p.id}
-        del = ids.sample(2)
-        @users[0].read_notifications = Notification.where('post_id in (?) and user_id = ?', del, @users[0]).select :id
-        expect(@users[0].unread_notifications.map{|n| n.post_id}).to eq(ids - del)
-        expect(@users[1].unread_notifications.map{|n| n.post_id}).to eq(ids)
-      end
-    end
-  end
 end
