@@ -1,7 +1,5 @@
 require 'rails_helper'
-RSpec.configure do |config|
-  config.include Features::SessionHelpers
-end
+
 feature 'Signs up' do
   scenario 'with valid name username email and password' do
     user = FactoryGirl.build :user

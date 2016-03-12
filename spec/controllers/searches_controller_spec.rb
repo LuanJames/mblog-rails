@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SearchesController, type: :controller do
-
+  login_user
+  
   describe "GET #index" do
     context 'without param' do
       subject do
@@ -20,7 +21,7 @@ RSpec.describe SearchesController, type: :controller do
 
       context 'with space' do
         before do
-          get :index, {search: 'luan james'}
+          get :index, {q: 'luan james'}
         end
 
         it { expect(response).to have_http_status(:success) }
@@ -33,7 +34,7 @@ RSpec.describe SearchesController, type: :controller do
 
       context 'by username' do
         before do
-          get :index, {search: 'dart'}
+          get :index, {q: 'dart'}
         end
 
         it { expect(response).to have_http_status(:success) }

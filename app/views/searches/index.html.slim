@@ -1,6 +1,14 @@
 h1 Searches#index
 p Find me in app/views/searches/index.html.slim
+= form_tag("/search", method: "get")
+  = label_tag(:q, "Search for:")
+  = text_field_tag(:q)
+  = submit_tag("Search")
+
+= @results.count
 - @results.each do |u|
-  = u.name
+  p
+    = u.name
+  p
+    = u.username
   br
-  = u.username
