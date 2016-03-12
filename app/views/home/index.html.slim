@@ -1,2 +1,7 @@
 h1 Home#index
 p Find me in app/views/home/index.html.slim
+
+- if user_signed_in?
+  = link_to t('view.sign_out'), destroy_user_session_path
+- else
+  = link_to t('view.sign_in'), new_user_session_path

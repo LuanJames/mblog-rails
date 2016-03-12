@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: "home#index"
 
-  get 'p/:username' => 'home#profile'
+  get 'p/:username' => 'profiles#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
