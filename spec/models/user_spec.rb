@@ -8,7 +8,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:username) } 
     it { is_expected.to validate_presence_of(:password) }  
     it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
-
+    it 'username' do
+      subject.username = 'Test 2'
+      is_expected.not_to be_valid 
+    end
     it '#strip_whitespace' do
       u1 = FactoryGirl.build :user
       u2 = FactoryGirl.build :user
@@ -78,6 +81,26 @@ RSpec.describe User, type: :model do
 
       it 'cannot remove a follower'
     end
+  end
+
+  describe '.search' do
+    let(:user1) { FactoryGirl.create :user, name: 'Luan James', username: 'CapJam' }
+    let(:user2) { FactoryGirl.create :user, name: 'Luan Jam', username: 'LuanJames' }
+
+    it 'return [] when empty string is passed' do
+      expect(User.search '').to match_array []
+    end
+
+    it 'works by name' do
+      expect(User.search 'james').to match_array [user1]
+      expect(User.search 'luan').to match_array [user1, user2]
+      expect(User.search 'Luan').to match_array [user1, user2]
+      expect(User.search 'jam lua').to match_array [user1, user2]
+      expect(User.search 'CapJam').to match_array [user1]
+      expect(User.search 'Cap').to match_array []
+    end
+
+
   end
 
 end

@@ -4,12 +4,21 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
-  validates :username, presence: true, uniqueness: {:case_sensitive => false}
+
+  validates :username, presence: true, length: { maximum: 20 },
+              format: { with: /\A[a-zA-Z0-9_]+\Z/ }, uniqueness: {:case_sensitive => false}
 
   has_many :relationships, foreign_key: 'from_id'
   has_many :following, through: :relationships, source: :to
 
   before_validation :strip_whitespace
+
+  def self.search(expr)
+    return [] if expr.blank?
+    
+    cond = expr.split(/\s+/).map {|w| "name ILIKE '%#{w}%'"}.join(' AND ')
+    where("(#{cond} OR username ILIKE ?)", expr)
+  end
 
   def followers
     User.joins('INNER JOIN relationships ON relationships.to_id = ' + id.to_s).distinct.to_a

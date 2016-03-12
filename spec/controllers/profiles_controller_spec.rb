@@ -10,7 +10,7 @@ RSpec.describe ProfilesController, type: :controller do
       end
 
       
-      it { is_expected.to respond_with :ok }
+      it { expect(response).to have_http_status(:success) }
       it { expect(response.content_type).to eq "text/html" }
       it { is_expected.to render_with_layout :application }
       it { is_expected.to render_template :index }
