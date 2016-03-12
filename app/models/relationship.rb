@@ -9,6 +9,11 @@ class Relationship < ActiveRecord::Base
   validate :cannot_add_self
 
 
+  def self.make_as_saw(ids, user)
+    where('to_id = ? and id in (?)', user.id, ids).update_all(saw: true)
+  end
+
+
   private
   def cannot_add_self
     errors.add(:base, 'You cannot add yourself as a relationship.') if from_id == to_id

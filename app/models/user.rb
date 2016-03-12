@@ -15,8 +15,13 @@ class User < ActiveRecord::Base
     User.joins('INNER JOIN relationships ON relationships.to_id = ' + id.to_s).distinct.to_a
   end
 
-  def unread_notifications
-    Notification.where(user_id: id, read:false).to_a
+  def new_followers
+    User.where('id in (?)', Relationship.where('to_id = ? and saw = false', id).select(:from_id)).to_a
+    # User.joins('INNER JOIN relationships ON relationships.to_id = ' + id.to_s).where('relationships.saw = false').distinct.to_a
+  end
+
+  def make_followers_as_saw(ids)
+    Relationship.where('to_id = ? and from_id in (?)', id, ids).update_all(saw: true)
   end
 
   private

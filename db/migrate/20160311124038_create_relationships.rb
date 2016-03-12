@@ -3,6 +3,7 @@ class CreateRelationships < ActiveRecord::Migration
     create_table :relationships do |t|
       t.integer :from_id, null: false
       t.integer :to_id, null: false
+      t.boolean :saw, default: false
 
       t.timestamps null: false
     end

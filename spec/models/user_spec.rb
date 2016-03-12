@@ -50,6 +50,20 @@ RSpec.describe User, type: :model do
         users[0].following << users[1]
         expect(users[0].following).to include users[2], users[1]
       end
+
+      context 'follow notification' do
+        before do
+          (1..2).each { |i| users[i].following << users[0] }
+          users[0].make_followers_as_saw users[1].id
+        end
+        it '#make_followers_as_saw' do
+          expect(Relationship.where(from_id: users[1].id, to_id: users[0].id, saw: true).count).to eq 1
+        end
+
+        it '#new_followers' do
+          expect(users[0].new_followers).to eq [users[2]]
+        end
+      end
     end
 
     describe '#followers' do
