@@ -9,6 +9,11 @@ module Feature
     end
 
 
+    def logout_user
+      click_button 'Sign out'
+      
+    end
+
     def sign_up_with(name, username, email, password)
       visit new_user_registration_path
       fill_in 'Name', with: name

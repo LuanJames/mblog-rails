@@ -3,7 +3,7 @@ p Find me in app/views/searches/index.html.slim
 = form_tag("/search", method: "get")
   = label_tag(:q, "Search for:")
   = text_field_tag(:q)
-  = submit_tag("Search")
+  = submit_tag(t('view.search'))
 
 = @results.count
 - @results.each do |u|
