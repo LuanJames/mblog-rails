@@ -10,6 +10,94 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require bootstrap.min
+ *= require flat-ui
  *= require_self
  */
+.asbestos {
+  color: #7f8c8d;
+
+}
+.frame {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #ffffff;
+    border: 1px solid #d3e0e9;
+}
+.frame:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.li-sty, .cont {
+    zoom: 1;
+    overflow: hidden;
+}
+.not-item {
+  width: 300px;
+}
+
+.cont { /*content text boxes. makes the text stay on right photo side*/
+  display: table-cell;
+  vertical-align: top;
+  width: 10000px;
+}
+.cont-link {
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.cont-phot { /*perfil photo on content texts*/
+    width: 60px !important;
+    border-radius: 100%;
+    height: 60px;
+    margin-right: 5px;
+    display: block;
+}
+.cont-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.ul-sty { /* better ul lists for navs*/
+  padding-left: 0;
+  list-style: none !important;
+}
+.follow{
+  display: inline-block;
+  padding: 0 10px;
+  border-right: 1px solid #d4dbe0;
+}
+.follow a{
+  color: #1e3948;
+}
+.follow:last-child {
+  border-right: 0;
+}
+
+.well{
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.panel-profile-img{
+  width: 100px;
+  height: 100px;
+  margin-top: -70px;
+  margin-bottom: 5px;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  box-shadow:0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.name-title {
+  font-weight: bold;
+}
+
+.panel-back-img { /* panel-background image */
+     height: 150px;
+     background-size: cover;
+}
+.sidebar-box {
+ max-height: 150px;
+ position: relative;
+ overflow: hidden;
+}

@@ -1,12 +1,17 @@
 $(document).ready(function(){
   $('#toggle-follow').click(function(){
-    var _el = $(this)
+    var _el = $(this);
      $.ajax({
             url: "/profile/follow",
             type: "post",
             data: {user_id: _el.attr('data-user')},
             success: function (response) {
               if (response.success) {
+                if (response.follow) {
+                  _el.removeClass('btn-default').addClass('btn-primary');
+                } else {
+                  _el.removeClass('btn-primary').addClass('btn-default');
+                }
                 _el.text(response.body);
               }
             },
@@ -19,8 +24,9 @@ $(document).ready(function(){
   });
 
   $('#create-post').click(function () {
+    console.log('sdfasdf');
     var _el = $(this);
-    var _posts = $('.posts');
+    var _posts = $('.item-text-area');
     var data = {content: $('#post-content').val()};
      $.ajax({
             url: "/profile/post",
@@ -28,7 +34,7 @@ $(document).ready(function(){
             data: data,
             success: function (response) {
               if (response.success) {
-                _posts.prepend(response.html);
+                _posts.after(response.html);
                 _el.text(response.body);
               }
             },

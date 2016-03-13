@@ -6,7 +6,7 @@ gem 'rails',                  '4.2.5'
 gem 'puma',                   '2.15.3'
 gem 'secure_headers',         '2.4.4'
 gem 'jquery-rails',           '4.0.5'
-gem 'turbolinks',             '2.5.3'
+# gem 'turbolinks',             '2.5.3'
 gem 'jbuilder',               '2.3.2'
 gem 'slim-rails',             '3.0.1'
 gem 'pg',                     '0.18.4'
@@ -42,7 +42,7 @@ end
 
 group :test do
   gem 'shoulda-matchers',     '3.0.1', require: false
-  gem 'simplecov',            '0.11.1', require: false
+  gem 'simplecov',            '0.11.2', require: false
   gem 'email_spec',           '1.6.0'
   gem 'capybara',             '2.5.0'
   gem 'poltergeist',          '1.8.0'

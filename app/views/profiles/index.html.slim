@@ -1,15 +1,24 @@
-h1 Perfil de #{@user.name}
+.tile
+  .row
+    .col-xs-2
+      img.cont-phot src="#{avatar_url(@user)}"
+    .col-xs-10.center
+      h5 #{@user.name}
+      small
+        = @user.thought.present? ? "\"#{@user.thought}\"" : ''
+  br
+  - if !@btn_follow.nil?
+    button#toggle-follow.btn.btn-block class="#{@btn_follow ? 'btn-primary' : 'btn-default'}"data-user==@user.id
+        = @btn_follow ? t('view.follow') : t('view.unfollow')
 
-- if !user_signed_in? or current_user != @user
-  button#toggle-follow data-user==@user.id
-    - if user_signed_in?
-      = current_user.following.include?(@user) ? t('view.unfollow') : t('view.follow') 
-    - else
-      = t('view.follow')
--if user_signed_in? and current_user == @user
-  textarea#post-content name="content"
-  button#create-post
-.posts
+ul.posts#cnt.ul-sty.ca
+  -if user_signed_in? and current_user == @user
+    li.li-sty.frame.item.item-text-area
+      a.cont-link href="#" 
+        img.cont-phot src="#{avatar_url(current_user)}"
+      .cont
+        textarea#post-content name="content"
+        button#create-post Enviar  
+
   -@posts.each do |post|
-    .item id="item-#{post.id}"
-      =post.content
+    =render partial: 'post_item', locals: {post: post}

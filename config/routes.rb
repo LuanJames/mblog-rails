@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   post 'profile/post' => 'profiles#create_post'
   post 'profile/follow' => 'profiles#toggle_follow_user'
+  post 'profile/saw' => 'profiles#saw_notifications'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
     return [] if expr.blank?
     
     cond = expr.split(/\s+/).map {|w| "name ILIKE '%#{w}%'"}.join(' AND ')
-    where("(#{cond} OR username ILIKE ?)", expr)
+    where("(#{cond} OR username ILIKE '%#{expr}%')")
   end
 
   def followers
-    User.joins('INNER JOIN relationships ON relationships.to_id = ' + id.to_s).distinct.to_a
+    User.where('id in (?)', Relationship.where('to_id = ?', id).select(:from_id)).to_a
   end
 
   def new_followers

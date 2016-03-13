@@ -34,7 +34,7 @@ RSpec.describe SearchesController, type: :controller do
 
       context 'by username' do
         before do
-          get :index, {q: 'dart'}
+          get :index, {q: 'dar'}
         end
 
         it { expect(response).to have_http_status(:success) }

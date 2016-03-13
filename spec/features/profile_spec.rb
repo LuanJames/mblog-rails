@@ -55,20 +55,13 @@ feature 'ProfilePage' do
     end
 
     scenario 'has num count notification' do
-      visit profile_path(user.username)
-      click_button 'Follow'
-      visit profile_path(user3.username)
-      click_button 'Follow'
-      logout_user
-
-      login_user user3
-      visit profile_path(user.username)
-      click_button 'Follow'
+      user2.following << user
       logout_user
 
       login_user user
+      visit root_path
 
-      expect(find('.notification')).to have_content('2')
+      expect(find('#followers')).to have_content('1')
     end
 
     scenario 'read notification' do

@@ -72,7 +72,8 @@ RSpec.describe User, type: :model do
     describe '#followers' do
       it 'return a array of users' do 
         users[0].following << users[2]
-        expect(users[2].followers).to include users[0]
+        expect(Relationship.where(to: users[2]).size).to eq 1
+        expect(users[2].followers).to match_array users[0]
       end
 
       it 'has nothing' do
@@ -97,7 +98,7 @@ RSpec.describe User, type: :model do
       expect(User.search 'Luan').to match_array [user1, user2]
       expect(User.search 'jam lua').to match_array [user1, user2]
       expect(User.search 'CapJam').to match_array [user1]
-      expect(User.search 'Cap').to match_array []
+      expect(User.search 'Cap').to match_array [user1]
     end
 
 

@@ -1,21 +1,3 @@
-= form_tag("/search", method: "get")
-  = label_tag(:q, "Search for:")
-  = text_field_tag(:q)
-  = submit_tag("Search")
 
-form.navbar-form.navbar-right action="#" role="search" 
-  .form-group
-    .input-group
-      input#navbarInput-01.form-control placeholder="Search" type="search" /
-      span.input-group-btn
-        button.btn type="submit" 
-          span.fui-search
-
-
-h1 Home#index
-p Find me in app/views/home/index.html.slim
-
-- if user_signed_in?
-  = link_to t('view.sign_out'), destroy_user_session_path
-- else
-  = link_to t('view.sign_in'), new_user_session_path
+-content_for :right
+  =render 'profile' if user_signed_in?

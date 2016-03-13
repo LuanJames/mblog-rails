@@ -9,17 +9,19 @@ html
     = csrf_meta_tags
     == yield :head
   body
-    p.notice = notice
-    p.alert = alert
+    .container
+      = render 'shared/menu'
+      p.notice = notice
+      p.alert = alert
 
-    div.my-container.p-t-15
-      #left.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
-        == yield :left
+      div.my-container.p-t-15
+        #left.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
+          == yield :left
 
-      #center.col-md-6.col-lg-6.col-sm-4.col-xs-12.col-xlg-8
-        == yield
+        #center.col-md-6.col-lg-6.col-sm-4.col-xs-12.col-xlg-8
+          == yield
 
-      #right.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
-        == yield :right
+        #right.col-md-3.col-sm-4.col-lg-3.col-xs-12.col-xlg-2
+          == yield :right
 
     == yield :javascript

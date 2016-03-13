@@ -10,7 +10,7 @@ module Feature
 
 
     def logout_user
-      click_button 'Sign out'
+      find('#sign-out').click
       
     end
 

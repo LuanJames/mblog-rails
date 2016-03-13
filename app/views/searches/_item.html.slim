@@ -1,0 +1,13 @@
+li.li-sty.frame.item
+  a.cont-link href="#{profile_path(user.username)}"
+    img.cont-phot src="#{avatar_url(user)}"
+  .cont
+    .cont-title
+      h6.name-title
+        a href="#{profile_path(user.username)}"
+          = user.username
+        small.asbestos
+          = ' '+user.name
+    .sidebar-box
+      p 
+        =user.thought      

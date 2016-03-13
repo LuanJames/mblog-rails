@@ -1,14 +1,10 @@
-h1 Searches#index
-p Find me in app/views/searches/index.html.slim
 = form_tag("/search", method: "get")
-  = label_tag(:q, "Search for:")
-  = text_field_tag(:q)
-  = submit_tag(t('view.search'))
+  = text_field_tag(:q, nil, class: 'form-control', placeholder: t('view.search'), autofocus: true)
+  = submit_tag(t('view.search'), class: 'btn btn-block btn-lg btn-primary', style: 'margin-top: 10px')
 
-= @results.count
+h4
+  = "#{@results.count} #{t('view.results')}"
+
+ul.posts#cnt.ul-sty.ca
 - @results.each do |u|
-  p
-    = u.name
-  p
-    = u.username
-  br
+  =render partial: 'item', locals: {user: u}

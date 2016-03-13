@@ -11,5 +11,29 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ProfilesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#time' do
+    let(:post) { FactoryGirl.build :post }
+    it 'second' do
+      post.created_at = Time.now - 2.day
+      post.updated_at = Time.now - 33.seconds
+
+      expect(helper.time(post)).to eq '33 ' + I18n.t('view.abr.second')
+    end
+
+    it 'minutes' do
+      post.created_at = Time.now - 2.day
+      post.updated_at = Time.now - 41.minutes
+
+      expect(helper.time(post)).to eq '41 ' + I18n.t('view.abr.minute')
+
+    end
+
+    it 'hours' do
+      post.created_at = Time.now - 2.day
+      post.updated_at = Time.now - 12.hours
+
+      expect(helper.time(post)).to eq '12 ' + I18n.t('view.abr.hour')
+
+    end
+  end
 end

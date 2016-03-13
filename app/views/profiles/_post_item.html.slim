@@ -1,2 +1,12 @@
-p
-  = @post.content
+li.li-sty.frame.item id="item-#{post.id}"
+  a.cont-link href="#" 
+    img.cont-phot src="#{avatar_url(post.user)}"
+  .cont
+    .cont-title
+      .name-title
+        =post.user.name
+      .pull-right
+        small.ago =time(post)
+    .sidebar-box
+      p 
+        =post.content      

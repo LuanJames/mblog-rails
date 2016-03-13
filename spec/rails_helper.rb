@@ -55,6 +55,7 @@ RSpec.configure do |config|
 
   config.include Feature::SessionHelpers, type: :feature
   config.include Feature::WaitForAjax, type: :feature
+  config.include Rails.application.routes.url_helpers, type: :helper
   config.include Devise::TestHelpers, type: :controller
   config.extend SessionHelpers, :type => :controller
   # RSpec Rails can automatically mix in different behaviours to your tests

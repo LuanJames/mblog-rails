@@ -1,0 +1,59 @@
+nav.navbar.navbar-inverse.navbar-embossed role="navigation" 
+  .navbar-header
+    button.navbar-toggle data-target="#navbar-collapse-01" data-toggle="collapse" type="button" 
+      span.sr-only Toggle navigation
+    a.navbar-brand href="#{root_path}" ==t('application_name')
+  #navbar-collapse-01.collapse.navbar-collapse
+    ul.nav.navbar-nav.navbar-left
+      - if user_signed_in?
+        li
+          a href==profile_path(current_user.username)
+            =t('view.profile')
+        li.dropdown#notifications
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            =t('view.notifications')
+            - if current_user.new_followers.count > 0
+              span.navbar-unread ==current_user.new_followers.count
+            b.caret
+          span.dropdown-arrow
+          ul.dropdown-menu.todo
+            - if current_user.new_followers.count > 0
+              - current_user.new_followers.each do |user|
+                li.not-item data-user="#{user.id}"
+                  .todo-icon style="padding: 0 22px 10px 0;"
+                    img.cont-phot src="#{avatar_url(user)}"
+                  .todo-content
+                    h4.todo-name
+                      = user.name
+                    = t('view.is_following_you')
+            else
+              li.not-item
+                .todo-icon style="padding: 0 22px 10px 0;"
+                .todo-content
+                  h4.todo-name
+                  = t('view.no_recent_activity')
+
+
+
+    ul.nav.navbar-nav.navbar-right
+      li
+        = form_tag("/search", method: "get", class: 'navbar-form')
+          .input-group
+            = text_field_tag(:q, nil, id:'navbarInput-01', class: 'form-control', placeholder:"#{t('view.search')}", type:"search")
+            span.input-group-btn
+              button.btn type="submit" 
+                span.fui-search
+
+      - if user_signed_in?
+        li.dropdown
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            = current_user.name
+            b.caret
+          span.dropdown-arrow
+          ul.dropdown-menu
+            li
+              a#sign-out href="#{destroy_user_session_path}" ==t('view.sign_out')
+      - else
+        li
+          a href==new_user_session_path
+            =t('view.sign_in')

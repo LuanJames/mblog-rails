@@ -1,39 +1,42 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
   <%= devise_error_messages! %>
+<div class="login-form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="form-group">
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true, placeholder: t('view.name'), class: "form-control name-field" %>
+    <label for="login-name" class="login-field-icon fui-user"></label>
+  </div>
+  <div class="form-group">
+
+    <%= f.text_field :username, autofocus: true, placeholder: t('view.username'), class: "form-control username-field" %>
+    <label for="login-name" class="login-field-icon fui-user"></label>
   </div>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+  <div class="form-group">
+
+    <%= f.email_field :email, autofocus: true, placeholder:t('view.email'), class: "form-control email-field" %>
+    <label for="login-name" class="login-field-icon fui-user"></label>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: t('view.password'), class: "form-control password-field" %>
+    <label for="login-pass" class="login-field-icon fui-lock"></label>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: t('view.password_confirmation'), class: "form-control password-field" %>
+    <label for="login-pass" class="login-field-icon fui-lock"></label>
+  </div>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+

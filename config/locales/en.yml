@@ -20,14 +20,29 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  application_name: 'Micro Blog'
   controller:
     profiles:
       follow: 'Follow'
       unfollow: 'Unfollow'
   view:
+    abr:
+      second: 'sec'
+      minute: 'min'
+      hour: 'h'
     sign_in: 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'
     search: 'Search'
     follow: 'Follow'
+    following: 'Following'
+    followers: 'Followers'
     unfollow: 'Unfollow'
+    results: 'results'
+    name: 'Name'
+    username: 'Username'
+    email: 'Email'
+    password: 'Password'
+    password_confirmation: 'Password confirmation'
+    is_following_you: 'is following you!'
+    no_recent_activity: 'No recent activity.'

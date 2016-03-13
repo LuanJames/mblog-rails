@@ -63,6 +63,40 @@ RSpec.describe ProfilesController, type: :controller do
     end
   end
 
+  describe 'POST #saw_notifications' do
+    context 'when login' do
+      login_user
+
+
+      it 'with invalid param' do
+        post :saw_notifications, {users: -1}
+
+        expect(response).to have_http_status(400)
+        expect(JSON.parse(response.body)['success']).to eq false
+      end
+
+      it 'with valid param' do
+        user = User.last
+        list = FactoryGirl.create_list(:user, 2)
+        list.each {|u| u.following << user}
+        post :saw_notifications, {users: list.map {|u| u.id}}
+
+        expect(response).to have_http_status(201)
+        expect(Relationship.where(to: user, saw: true).count).to eq 2
+        expect(JSON.parse(response.body)['success']).to eq true
+      end
+
+    end
+
+    context 'when logout' do
+      before do
+        post :saw_notifications, {users: [FactoryGirl.create(:user).id]}
+      end
+      
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(JSON.parse(response.body)['success']).to eq(false) }
+    end
+  end
 
   describe 'POST #toggle_follow_user' do
     context 'when login' do
