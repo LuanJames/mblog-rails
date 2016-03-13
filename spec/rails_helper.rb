@@ -14,7 +14,7 @@ if ENV['COVERAGE'] == 'true'
 
   SimpleCov.start 'rails'
 end
-
+Capybara.default_max_wait_time= 5
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -54,7 +54,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include Feature::SessionHelpers, type: :feature
-  
+  config.include Feature::WaitForAjax, type: :feature
   config.include Devise::TestHelpers, type: :controller
   config.extend SessionHelpers, :type => :controller
   # RSpec Rails can automatically mix in different behaviours to your tests

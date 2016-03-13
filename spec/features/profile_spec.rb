@@ -2,6 +2,7 @@ require 'rails_helper'
 # RSpec.configure do |config|
 #   config.include Features::SessionHelpers
 # end
+
 feature 'ProfilePage' do
   let(:user)  { FactoryGirl.create :user}
   let(:user2) { FactoryGirl.create :user}
@@ -12,7 +13,7 @@ feature 'ProfilePage' do
       visit profile_path(user.username)
 
       click_button 'Follow'
-
+      # wait_for_ajax
       expect(page).to have_current_path(new_user_session_path)
     end
 
@@ -69,6 +70,25 @@ feature 'ProfilePage' do
 
       expect(find('.notification')).to have_content('2')
     end
+
+    scenario 'read notification' do
+      visit profile_path(user.username)
+      click_button 'Follow'
+      visit profile_path(user3.username)
+      click_button 'Follow'
+      logout_user
+
+      login_user user3
+      visit profile_path(user.username)
+      click_button 'Follow'
+      logout_user
+
+      login_user user
+      click_button '#read-notifications'
+
+      expect(Relationship.where(to_id: user.id).count).to eq 0
+    end
+
 
     scenario 'can write post' do
       visit profile_path(user2.username)

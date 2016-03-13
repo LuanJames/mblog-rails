@@ -308,7 +308,6 @@ DEPENDENCIES
   bullet (= 4.14.10)
   byebug (= 8.2.1)
   capybara (= 2.5.0)
-  coffee-rails (= 4.1.0)
   database_cleaner (= 1.5.1)
   devise
   dotenv-rails (= 2.0.2)

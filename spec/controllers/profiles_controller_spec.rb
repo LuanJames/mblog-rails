@@ -34,25 +34,22 @@ RSpec.describe ProfilesController, type: :controller do
 
   describe 'POST #create_post' do
     context 'when login' do
-      before do
-        @user = FactoryGirl.create :user
-      end 
-      login_user @user
+      login_user
 
       it 'with void content' do
         post :create_post, {content: ''}
 
         expect(response).to have_http_status(400)
-        expect(JSON.parse(response.body)[:success]).to eq false
+        expect(JSON.parse(response.body)['success']).to eq false
       end
 
       it 'with valid content' do
         post :create_post, {content: Faker::Lorem.paragraph}
-
-        expect(Post.where(user: @user).count).to eq 1
+        user = User.last
+        expect(Post.where(user: user).count).to eq 1
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to eq(:json)
-        expect(JSON.parse(response.body)[:success]).to eq(true)
+        expect(response.content_type).to eq("application/json")
+        expect(JSON.parse(response.body)['success']).to eq(true)
       end
     end
 
@@ -61,46 +58,45 @@ RSpec.describe ProfilesController, type: :controller do
         post :create_post, {content: Faker::Lorem.paragraph}
       end
 
-      it { expect(response).to have_http_status(:forbidden) }
-      it { expect(JSON.parse(response.body)[:success]).to eq(false) }
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(JSON.parse(response.body)['success']).to eq(false) }
     end
   end
 
 
   describe 'POST #toggle_follow_user' do
     context 'when login' do
-      before do
-        @user = FactoryGirl.create :user
-      end 
-      login_user @user
+      login_user
 
       it 'with invalid param' do
-        post :toggle_follow_user, {user_id: FactoryGirl.create(:user).id}
+        post :toggle_follow_user, {user_id: -1}
 
         expect(response).to have_http_status(400)
-        expect(JSON.parse(response.body)[:success]).to eq false
+        expect(JSON.parse(response.body)['success']).to eq false
       end
 
       context 'with valid param' do
         it 'follow' do
+          user = User.last
           post :toggle_follow_user, {user_id: FactoryGirl.create(:user).id}
 
-          expect(@user.following.count).to eq 1
+          expect(user.following.count).to eq 1
           expect(response).to have_http_status(201)
-          expect(JSON.parse(response.body)[:success]).to eq true
-          expect(JSON.parse(response.body)[:msg]).to eq 'Unfollow'
+          expect(JSON.parse(response.body)['success']).to eq true
+          expect(JSON.parse(response.body)['body']).to eq 'Unfollow'
         end
 
         it 'unfollow' do
+          user = User.last
           new_user = FactoryGirl.create(:user)
-          @user.following << new_user
+          user.following << new_user
 
           post :toggle_follow_user, {user_id: new_user.id}
 
-          expect(@user.following.count).to eq 0
+          expect(user.following.count).to eq 0
           expect(response).to have_http_status(201)
-          expect(JSON.parse(response.body)[:success]).to eq true
-          expect(JSON.parse(response.body)[:msg]).to eq 'Follow'
+          expect(JSON.parse(response.body)['success']).to eq true
+          expect(JSON.parse(response.body)['body']).to eq 'Follow'
         end
       end
     end
@@ -110,8 +106,8 @@ RSpec.describe ProfilesController, type: :controller do
         post :toggle_follow_user, {user_id: FactoryGirl.create(:user).id}
       end
       
-      it { expect(response).to have_http_status(:forbidden) }
-      it { expect(JSON.parse(response.body)[:success]).to eq(false) }
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(JSON.parse(response.body)['success']).to eq(false) }
     end
   end
 end

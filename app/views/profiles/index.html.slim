@@ -1,1 +1,15 @@
 h1 Perfil de #{@user.name}
+
+- if !user_signed_in? or current_user != @user
+  button#toggle-follow data-user==@user.id
+    - if user_signed_in?
+      = current_user.following.include?(@user) ? t('view.unfollow') : t('view.follow') 
+    - else
+      = t('view.follow')
+-if user_signed_in? and current_user == @user
+  textarea#post-content name="content"
+  button#create-post
+.posts
+  -@posts.each do |post|
+    .item id="item-#{post.id}"
+      =post.content

@@ -20,9 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  controller:
+    profiles:
+      follow: 'Follow'
+      unfollow: 'Unfollow'
   view:
     sign_in: 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'
     search: 'Search'
+    follow: 'Follow'
+    unfollow: 'Unfollow'

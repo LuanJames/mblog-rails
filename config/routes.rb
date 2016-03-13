@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   get 'p/:username' => 'profiles#index', as: :profile
 
+  post 'profile/post' => 'profiles#create_post'
+  post 'profile/follow' => 'profiles#toggle_follow_user'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
