@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
   def create_post
     if params[:content].present?
       post = Post.create(user: current_user, content: params[:content])
-      html = render_to_string('_post_item', layout: false, :locals => {:post => post})
+      html = render_to_string('shared/_post', layout: false, :locals => {:post => post})
       render json: {success: true, body: post, html: html}, status: 201 and return
     end
     render json: {success: false}, status: 400

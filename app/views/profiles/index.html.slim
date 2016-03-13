@@ -21,4 +21,4 @@ ul.posts#cnt.ul-sty.ca
         button#create-post Enviar  
 
   -@posts.each do |post|
-    =render partial: 'post_item', locals: {post: post}
+    =render partial: 'shared/post', locals: {post: post}

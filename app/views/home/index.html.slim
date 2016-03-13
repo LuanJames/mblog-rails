@@ -1,3 +1,6 @@
+ul.posts#cnt.ul-sty.ca
+  - @last_posts.each do |post|
+    = render partial: 'shared/post', locals: {post: post}
 
 -content_for :right
   =render 'profile' if user_signed_in?
