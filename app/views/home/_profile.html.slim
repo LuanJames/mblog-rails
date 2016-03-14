@@ -9,12 +9,12 @@
       ul.ul-sty.center
         /! Do reference to a modal!!
         li.follow
-          a href="#" 
+          span
             = t('view.following')
             br
             span#following.panel-sub ==current_user.following.count
         li.follow
-          a href="#" 
+          span
             = t('view.followers')
             br
             span#followers.panel-sub ==current_user.followers.count

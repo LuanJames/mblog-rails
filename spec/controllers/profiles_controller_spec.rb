@@ -112,11 +112,13 @@ RSpec.describe ProfilesController, type: :controller do
       context 'with valid param' do
         it 'follow' do
           user = User.last
+          user.following << FactoryGirl.create(:user)
           post :toggle_follow_user, {user_id: FactoryGirl.create(:user).id}
 
-          expect(user.following.count).to eq 1
+          expect(user.following.count).to eq 2
           expect(response).to have_http_status(201)
           expect(JSON.parse(response.body)['success']).to eq true
+          expect(JSON.parse(response.body)['num_following']).to eq user.following.count
           expect(JSON.parse(response.body)['body']).to eq 'Unfollow'
         end
 
@@ -130,6 +132,7 @@ RSpec.describe ProfilesController, type: :controller do
           expect(user.following.count).to eq 0
           expect(response).to have_http_status(201)
           expect(JSON.parse(response.body)['success']).to eq true
+          expect(JSON.parse(response.body)['num_following']).to eq user.following.count
           expect(JSON.parse(response.body)['body']).to eq 'Follow'
         end
       end

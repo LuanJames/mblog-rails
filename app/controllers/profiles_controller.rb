@@ -37,10 +37,10 @@ class ProfilesController < ApplicationController
         user = User.find(params[:user_id])
 
         if Relationship.delete_all(from_id: current_user.id, to_id: user.id) > 0
-          render json: {success: true, follow: true, body: I18n.t('controller.profiles.follow')}, status: 201 and return
+          render json: {success: true, follow: true, num_following: current_user.following.count, body: I18n.t('controller.profiles.follow')}, status: 201 and return
         else
           current_user.following << user
-          render json: {success: true, follow: false, body: I18n.t('controller.profiles.unfollow')}, status: 201 and return
+          render json: {success: true, follow: false, num_following: current_user.following.count, body: I18n.t('controller.profiles.unfollow')}, status: 201 and return
         end
       end
 

@@ -12,6 +12,7 @@ $(document).ready(function(){
                 } else {
                   _el.removeClass('btn-primary').addClass('btn-default');
                 }
+                $('#following').text(response.num_following);
                 _el.text(response.body);
               }
             },

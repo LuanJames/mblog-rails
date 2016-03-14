@@ -26,8 +26,8 @@ feature 'Search' do
 
       visit search_path
 
-      fill_in 'Search', with: 'j2am'
-      click_button 'Search'
+      fill_in 'navbarInput-01', with: 'j2am'
+      find('#btn-search').click
 
       expect(page).to have_content(list[0].name)
       expect(page).to have_content(list[1].name)

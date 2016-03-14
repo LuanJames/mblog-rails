@@ -19,13 +19,14 @@ nav.navbar.navbar-inverse.navbar-embossed role="navigation"
           ul.dropdown-menu.todo
             - if current_user.new_followers.count > 0
               - current_user.new_followers.each do |user|
-                li.not-item data-user="#{user.id}"
-                  .todo-icon style="padding: 0 22px 10px 0;"
-                    img.cont-phot src="#{avatar_url(user)}"
-                  .todo-content
-                    h4.todo-name
-                      = user.name
-                    = t('view.is_following_you')
+                a href==profile_path(user.username)
+                  li.not-item data-user="#{user.id}"
+                    .todo-icon style="padding: 0 22px 10px 0;"
+                      img.cont-phot src="#{avatar_url(user)}"
+                    .todo-content
+                      h4.todo-name
+                        = user.name
+                      = t('view.is_following_you')
             - else
               li.not-item
                 .todo-icon style="padding: 0 22px 10px 0;"
@@ -41,7 +42,7 @@ nav.navbar.navbar-inverse.navbar-embossed role="navigation"
           .input-group
             = text_field_tag(:q, nil, id:'navbarInput-01', class: 'form-control', placeholder:"#{t('view.search')}", type:"search")
             span.input-group-btn
-              button.btn type="submit" 
+              button#btn-search.btn type="submit" 
                 span.fui-search
 
       - if user_signed_in?

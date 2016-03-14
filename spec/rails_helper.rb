@@ -14,7 +14,7 @@ if ENV['COVERAGE'] == 'true'
 
   SimpleCov.start 'rails'
 end
-Capybara.default_max_wait_time= 5
+
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
