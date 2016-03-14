@@ -30,6 +30,7 @@ en:
       second: 'sec'
       minute: 'min'
       hour: 'h'
+    change_your_password: 'Change your password'
     sign_in: 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'

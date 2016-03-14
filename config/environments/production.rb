@@ -25,7 +25,16 @@ Rails.application.configure do
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.action_mailer.default_url_options = { host: 'microblog-luanjames.herokuapp.com'}
-  
+
+  config.action_mailer.smtp_settings = {
+      address:            "smtp.gmail.com",
+      port:               587,
+      domain:             "microblog-luanjames.herokuapp.com",
+      authentication:     "plain",
+      user_name:          "micro.blog.lj",
+      password:           "aa!@#123bb",
+      enable_starttls_auto: true
+  }
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
