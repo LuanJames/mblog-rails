@@ -17,6 +17,10 @@
  textarea {
     resize: none;
 }
+#error_explanation h2{
+  font-size: 20px;
+
+}
 .font-small {
   font-size: 14px;
 }

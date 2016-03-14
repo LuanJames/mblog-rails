@@ -47,3 +47,6 @@ en:
     is_following_you: 'is following you!'
     no_recent_activity: 'No recent activity.'
     send: 'Post'
+    forgot_password: 'Forgot your password?'
+    send_instructions: 'Send me reset password instructions'
+    profile_not_found: 'Profile not found'

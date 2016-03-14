@@ -1,5 +1,4 @@
 
-
   <%= devise_error_messages! %>
 <div class="login-form">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -34,7 +33,7 @@
     <label for="login-pass" class="login-field-icon fui-lock"></label>
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-primary' %>
   </div>
 <% end %>
 

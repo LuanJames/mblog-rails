@@ -5,6 +5,26 @@ module ApplicationHelper
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=128&d=mm"
   end
 
+    # button#toggle-follow.btn.btn-block class="#{@btn_follow ? 'btn-primary' : 'btn-default'}"data-user==@user.id
+    #     = @btn_follow ? t('view.follow') : t('view.unfollow')
+
+  def btn_follow(user)
+    if !user_signed_in? or current_user != user
+      has_btn_follow = true
+
+      if user_signed_in?
+        has_btn_follow = !current_user.following.include?(user)
+      else
+        has_btn_follow = true
+      end
+      
+      btn_class = has_btn_follow ? 'btn-primary' : 'btn-default';
+      content_tag(:button, id: 'toggle-follow', :class => "btn btn-block #{btn_class}", 'data-user' => user.id) do
+        has_btn_follow ? t('view.follow') : t('view.unfollow')
+      end
+    end
+  end
+
   def time(post)
     sec = (Time.now - post.updated_at)
     if sec < 1.minute

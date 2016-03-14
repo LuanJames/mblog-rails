@@ -20,7 +20,7 @@ feature 'ProfilePage' do
     scenario "can see user's post" do
       list = FactoryGirl.create_list :post, 8, user: user
       visit profile_path(user.username)
-      items = find('.posts').all('.post').map{|i| puts i.inspect; i.id}
+      items = find('.posts').all('.post').map{|i| i.id}
       expect(items).to match_array(list.map {|p| 'item-'+p.id.to_s })
     end
   end
