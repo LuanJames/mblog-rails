@@ -7,9 +7,7 @@
       small
         = @user.thought.present? ? "\"#{@user.thought}\"" : ''
   br
-  - if !@btn_follow.nil?
-    button#toggle-follow.btn.btn-block class="#{@btn_follow ? 'btn-primary' : 'btn-default'}"data-user==@user.id
-        = @btn_follow ? t('view.follow') : t('view.unfollow')
+  = btn_follow @user, 'btn-block'
 
 ul.posts#cnt.ul-sty.ca
   -if user_signed_in? and current_user == @user

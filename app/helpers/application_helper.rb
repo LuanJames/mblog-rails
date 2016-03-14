@@ -8,7 +8,7 @@ module ApplicationHelper
     # button#toggle-follow.btn.btn-block class="#{@btn_follow ? 'btn-primary' : 'btn-default'}"data-user==@user.id
     #     = @btn_follow ? t('view.follow') : t('view.unfollow')
 
-  def btn_follow(user)
+  def btn_follow(user, classes = '')
     if !user_signed_in? or current_user != user
       has_btn_follow = true
 
@@ -19,7 +19,7 @@ module ApplicationHelper
       end
       
       btn_class = has_btn_follow ? 'btn-primary' : 'btn-default';
-      content_tag(:button, id: 'toggle-follow', :class => "btn btn-block #{btn_class}", 'data-user' => user.id) do
+      content_tag(:button, :class => "toggle-follow btn #{btn_class} #{classes}", 'data-user' => user.id) do
         has_btn_follow ? t('view.follow') : t('view.unfollow')
       end
     end

@@ -1,7 +1,5 @@
-var spin = '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>';
-
 $(document).ready(function(){
-  $('#toggle-follow').click(function(){
+  $('.toggle-follow').click(function(){
     var _el = $(this);
      $.ajax({
             url: "/profile/follow",
@@ -29,8 +27,6 @@ $(document).ready(function(){
     var _el = $(this);
     var _posts = $('.item-text-area');
     var data = {content: $('#post-content').val()};
-    var _spin = $(spin);
-    $(this).append(_spin);
      $.ajax({
             url: "/profile/post",
             type: "post",
