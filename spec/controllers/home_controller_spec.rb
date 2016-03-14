@@ -11,7 +11,7 @@ RSpec.describe HomeController, type: :controller do
         get :index
       end
 
-        it { expect(response).to have_http_status(:success) }
+      it { expect(response).to have_http_status(:success) } 
       it { is_expected.to render_with_layout :application }
       it { is_expected.to render_template :index }
       it 'has last posts' do

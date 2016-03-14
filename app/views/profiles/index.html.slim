@@ -17,8 +17,9 @@ ul.posts#cnt.ul-sty.ca
       a.cont-link href="#" 
         img.cont-phot src="#{avatar_url(current_user)}"
       .cont
-        textarea#post-content name="content"
-        button#create-post Enviar  
+        textarea#post-content.form-control  name="content"
+        button#create-post.btn.btn-primary.btn-block style="margin-top: 10px;"
+          = t('view.send')  
 
   -@posts.each do |post|
     =render partial: 'shared/post', locals: {post: post}

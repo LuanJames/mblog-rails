@@ -4,3 +4,7 @@ ul.posts#cnt.ul-sty.ca
 
 -content_for :right
   =render 'profile' if user_signed_in?
+  =render 'shared/map'
+
+-content_for :left
+  =render partial: 'shared/suggestions', locals: {users: User.all.sample(3)}

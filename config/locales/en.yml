@@ -46,3 +46,4 @@ en:
     password_confirmation: 'Password confirmation'
     is_following_you: 'is following you!'
     no_recent_activity: 'No recent activity.'
+    send: 'Post'

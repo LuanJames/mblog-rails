@@ -1,9 +1,9 @@
-li.li-sty.frame.item id="item-#{post.id}"
-  a.cont-link href="#" 
+li.li-sty.post.frame.item id="item-#{post.id}"
+  a.cont-link href==profile_path(post.user.username)
     img.cont-phot src="#{avatar_url(post.user)}"
   .cont
     .cont-title
-      .name-title
+      a.name-title href==profile_path(post.user.username)
         =post.user.name
       .pull-right
         small.ago =time(post)

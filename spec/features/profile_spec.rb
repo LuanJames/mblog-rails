@@ -20,7 +20,7 @@ feature 'ProfilePage' do
     scenario "can see user's post" do
       list = FactoryGirl.create_list :post, 8, user: user
       visit profile_path(user.username)
-      items = page.all('.items').map{|i| i.id}
+      items = find('.posts').all('.post').map{|i| puts i.inspect; i.id}
       expect(items).to match_array(list.map {|p| 'item-'+p.id.to_s })
     end
   end
@@ -86,8 +86,8 @@ feature 'ProfilePage' do
     scenario 'can write post' do
       visit profile_path(user2.username)
       text = Faker::Lorem.paragraph
-      fill_in 'Text', with: text
-      click_button 'Post'
+      fill_in '#post-content', with: text
+      find('#create-post').click
       expect(page).to have_content(text)
       expect(Post.where(user: user2, content: text).size).to eq 1
     end
