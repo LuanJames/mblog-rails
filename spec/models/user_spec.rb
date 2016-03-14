@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   context 'validations' do
   	subject { FactoryGirl.build :user }
 
+    it { is_expected.to have_many(:posts) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:username) } 
     it { is_expected.to validate_presence_of(:password) }  

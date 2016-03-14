@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, length: { maximum: 20 },
               format: { with: /\A[a-zA-Z0-9_]+\Z/ }, uniqueness: {:case_sensitive => false}
 
+  has_many :posts
   has_many :relationships, foreign_key: 'from_id'
   has_many :following, through: :relationships, source: :to
 

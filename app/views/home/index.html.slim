@@ -1,3 +1,6 @@
+- if user_signed_in? and current_user.posts.count == 0
+  a.btn.btn-primary.btn-block style="margin-bottom: 10px" href==profile_path(current_user.username)
+    = t('view.create_first_post')
 ul.posts#cnt.ul-sty.ca
   - @last_posts.each do |post|
     = render partial: 'shared/post', locals: {post: post}
