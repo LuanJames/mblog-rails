@@ -6,16 +6,6 @@ class ProfilesController < ApplicationController
 
       @posts = Post.where(user: @user).order(created_at: :desc).limit(20)
 
-      if !user_signed_in? or current_user != @user
-        @btn_follow = true
-
-        if user_signed_in?
-          @btn_follow = !current_user.following.include?(@user)
-        else
-          @btn_follow = true
-        end
-      end
-
     else
       render :not_find
     end

@@ -79,8 +79,6 @@ RSpec.describe User, type: :model do
       it 'has nothing' do
         expect(users[0].followers.size).to eq 0
       end
-
-      it 'cannot remove a follower'
     end
   end
 
