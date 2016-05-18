@@ -22,6 +22,8 @@ gem 'refills',                '0.1.0'
 gem 'normalize-rails',        '3.0.3'
 gem 'rollbar',                '2.7.0'
 
+# gem 'therubyracer', platforms: :ruby # JavaScript runtime
+
 group :production, :staging do
   gem 'rails_12factor',       '0.0.3'
   gem 'rack-canonical-host',  '0.1.0'
@@ -31,7 +33,7 @@ end
 
 group :development do
   gem 'foreman',              '0.78.0'
-  gem 'jumpup',               '0.0.8'
+  gem 'jumpup',               '0.0.8' 
   gem 'jumpup-heroku',        '0.0.6'
   gem 'better_errors',        '2.1.1'
   gem 'binding_of_caller',    '0.7.2'

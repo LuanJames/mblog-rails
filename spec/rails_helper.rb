@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'devise'
 
 if ENV['COVERAGE'] == 'true'
@@ -14,6 +15,8 @@ if ENV['COVERAGE'] == 'true'
 
   SimpleCov.start 'rails'
 end
+
+Capybara.javascript_driver = :poltergeist
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|

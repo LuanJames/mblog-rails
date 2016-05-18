@@ -9,11 +9,11 @@ feature 'ProfilePage' do
   let(:user3) { FactoryGirl.create :user}
 
   describe 'without login' do
-    # scenario 'cannot follow users' do
+    # scenario 'cannot follow users', js: true do
     #   visit profile_path(user.username)
 
     #   click_button 'Follow'
-    #   # wait_for_ajax
+
     #   expect(page).to have_current_path(new_user_session_path)
     # end
 
