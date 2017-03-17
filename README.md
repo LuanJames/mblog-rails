@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/LuanJames/mblog-rails/badges/gpa.svg)](https://codeclimate.com/github/LuanJames/mblog-rails)
+
 # Introdução
 
 mblog-rails é um simples MicroBlog com 100% ( ..ou quase isso :-) ) de cobertura de testes.
